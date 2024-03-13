@@ -1,0 +1,19 @@
+const { InteractionReplyOptions } = require('discord.js');
+// Example function to handle interaction
+async function handleInteraction(interaction) {
+    if (interaction.isCommand()) {
+        if (interaction.commandName === 'ping') {
+            // Respond to a slash command with Pong
+            const replyOptions = new InteractionReplyOptions().setContent('Pong!');
+            await interaction.reply(replyOptions);
+        }
+    }
+}
+
+// Example of handling interactionCreate event
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isCommand()) return;
+
+    // Handle interaction
+    await handleInteraction(interaction);
+});
